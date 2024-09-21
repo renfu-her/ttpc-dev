@@ -373,6 +373,7 @@ $sql="insert into mail (
 
 		var_dump($mail->send(), $mail);
 		exit;
+		
 		if(!$mail->send()) {
 			echo 'Mailer Error: ' . $mail->ErrorInfo;
 		 	echo "<Script Language =\"Javascript\">";
