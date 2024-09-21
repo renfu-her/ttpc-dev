@@ -28,7 +28,7 @@ $google_secretKey="6Ldna0kpAAAAAE1-Mc0iln4dT57dXCVuLx-6ugfL";
 		$PHP_Mailer_host="smtp.gmail.com"; // Specify main and backup SMTP servers
 		$PHP_Mailer_SMTPAuth="true"; // Enable SMTP authentication
 		$PHP_Mailer_Username="bloomami2022@gmail.com"; // SMTP username
-		$PHP_Mailer_Password="keefztlwllpsmubp"; // SMTP password
+		$PHP_Mailer_Password="owectxuwfbapejsn"; // SMTP password
 		$PHP_Mailer_SMTPSecure="tls"; // Enable TLS encryption, `ssl` also accepted
 		$PHP_Mailer_Port="587"; // TCP port to connect to
 		//$mail->setFrom('寄件者gmail', '名字'); //寄件的Gmail
