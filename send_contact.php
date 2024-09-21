@@ -370,6 +370,9 @@ $sql="insert into mail (
 		$mail->Body = "$message"; //郵件內容
 		//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
+
+		var_dump($mail->send(), $mail);
+		exit;
 		if(!$mail->send()) {
 			echo 'Mailer Error: ' . $mail->ErrorInfo;
 		 	echo "<Script Language =\"Javascript\">";
