@@ -2,6 +2,16 @@
 if (!isset($_SESSION)) {
 	session_start();
 }
+
+require 'PHPMailer6/src/Exception.php';
+require 'PHPMailer6/src/PHPMailer.php';
+require 'PHPMailer6/src/SMTP.php';
+
+// 使用命名空间中的类
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
 echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 include "admin/common.func.php";
 ini_set('display_errors', 1);
@@ -301,12 +311,8 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	//設定time out
 	set_time_limit(120);
 
-	require 'PHPMailer/src/Exception.php';
-	require 'PHPMailer/src/PHPMailer.php';
-	require 'PHPMailer/src/SMTP.php';
-
 	//Create a new PHPMailer instance
-	$mail = new PHPMailer\PHPMailer\PHPMailer();
+	$mail = new PHPMailer();
 	//Tell PHPMailer to use SMTP
 	$mail->isSMTP();
 	//Enable SMTP debugging
