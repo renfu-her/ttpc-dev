@@ -357,7 +357,7 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 
 	$mail->Body = $message;
 
-	var_dump($mail);
+	var_dump($mail, $mail->send());
 	exit;
 
 	//send the message, check for errors
