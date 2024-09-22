@@ -302,7 +302,9 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	set_time_limit(120);
 	//echo !extension_loaded('openssl')?"Not Available":"Available";
 
-	require_once("./PHP_Mailer/PHPMailerAutoload.php"); //記得引入檔案 
+	// require_once("./PHP_Mailer/PHPMailerAutoload.php"); //記得引入檔案 
+	require 'PHP_Mailer/class.phpmailer.php';
+	require 'PHP_Mailer/class.smtp.php';
 	$mail = new PHPMailer;
 	$mail->CharSet = "utf-8"; //郵件編碼
 	//寄信的程式頁面加入這一行
