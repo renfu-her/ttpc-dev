@@ -301,7 +301,9 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	//設定time out
 	set_time_limit(120);
 
-	require 'PHPMailer/vendor/autoload.php';
+	require 'PHPMailer/src/Exception.php';
+	require 'PHPMailer/src/PHPMailer.php';
+	require 'PHPMailer/src/SMTP.php';
 
 	//Create a new PHPMailer instance
 	$mail = new PHPMailer\PHPMailer\PHPMailer();
