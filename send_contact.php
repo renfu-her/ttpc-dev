@@ -338,9 +338,13 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 			內文
 		*/
 	$send_conpany = $rows['conpany']; //公司名稱
-	$mail->Subject = '=?utf-8?B?' . base64_encode("[$send_conpany] 網站線上申請") . '?=';
+	$mail->Subject = '網站線上申請';
 	$mail->Body = $message; //郵件內容
 	//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+	var_dump($mail->send());
+	exit;
+
 
 	if (!$mail->send()) {
 		echo 'Mailer Error: ' . $mail->ErrorInfo;
