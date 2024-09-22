@@ -331,13 +331,15 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	//Set who the message is to be sent to
 	// $mail->addAddress('whoto@example.com', 'John Doe');
 	//Set the subject line
-	$send_email_array = explode(",", $send_email); //根据逗号分割存入数组
-	foreach ($send_email_array as $recipient) {
-		$recipient = trim($recipient); // 移除可能的空格
-		if (filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
-			$mail->addAddress($recipient);
-		}
-	}
+	// $send_email_array = explode(",", $send_email); //根据逗号分割存入数组
+	// foreach ($send_email_array as $recipient) {
+	// 	$recipient = trim($recipient); // 移除可能的空格
+	// 	if (filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
+	// 		$mail->addAddress($recipient);
+	// 	}
+	// }
+
+	$mail->addAddress('renfu.her@gmail.com');
 
 	$mail->Subject = '網站線上申請';
 	//Read an HTML message body from an external file, convert referenced images to embedded,
