@@ -304,7 +304,7 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	require 'PHPMailer/vendor/autoload.php';
 
 	//Create a new PHPMailer instance
-	$mail = new PHPMailer();
+	$mail = new PHPMailer\PHPMailer\PHPMailer();
 	//Tell PHPMailer to use SMTP
 	$mail->isSMTP();
 	//Enable SMTP debugging
