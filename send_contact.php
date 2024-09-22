@@ -342,7 +342,7 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	$mail->Body = $message; //郵件內容
 	//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-	var_dump($mail->send());
+	var_dump($mail->send(), $mail);
 	exit;
 
 
