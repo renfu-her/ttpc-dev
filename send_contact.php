@@ -300,31 +300,35 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	//mail發送
 	//設定time out
 	set_time_limit(120);
-	//echo !extension_loaded('openssl')?"Not Available":"Available";
 
-	// require_once("./PHP_Mailer/PHPMailerAutoload.php"); //記得引入檔案 
-	require 'PHP_Mailer/class.phpmailer.php';
-	require 'PHP_Mailer/class.smtp.php';
-	$mail = new PHPMailer;
-	$mail->CharSet = "utf-8"; //郵件編碼
-	//寄信的程式頁面加入這一行
+	require 'vendor/autoload.php';
 
-	//$mail->SMTPDebug = 3; // 開啟偵錯模式
-	$mail->isSMTP(); // Set mailer to use SMTP
-	$mail->Host = $PHP_Mailer_host; // Specify main and backup SMTP servers
-	$mail->SMTPAuth = $PHP_Mailer_SMTPAuth; // Enable SMTP authentication
-	//$mail->Username = '寄件者gmail'; // SMTP username
-	$mail->Username = $PHP_Mailer_Username; // SMTP username
-	//$mail->Password = "寄件者gmail密碼"; // SMTP password
-	$mail->Password = $PHP_Mailer_Password; // SMTP password
-	$mail->SMTPSecure = "ssl"; // Enable TLS encryption, `ssl` also accepted
-	$mail->Port = "465"; // TCP port to connect to
-
-	//$mail->setFrom('寄件者gmail', '名字'); //寄件的Gmail
-	$mail->setFrom($PHP_Mailer_setFrom_mail, $PHP_Mailer_setFrom_name); //寄件的Gmail
-	//$mail->addAddress('收件者信箱', '收件者名字'); // 收件的信箱
-
-	//多收件者處理
+	//Create a new PHPMailer instance
+	$mail = new PHPMailer();
+	//Tell PHPMailer to use SMTP
+	$mail->isSMTP();
+	//Enable SMTP debugging
+	//SMTP::DEBUG_OFF = off (for production use)
+	//SMTP::DEBUG_CLIENT = client messages
+	//SMTP::DEBUG_SERVER = client and server messages
+	$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+	//Set the hostname of the mail server
+	$mail->Host = 'smtp.gmaile.com';
+	//Set the SMTP port number - likely to be 25, 465 or 587
+	$mail->Port = 465;
+	//Whether to use SMTP authentication
+	$mail->SMTPAuth = true;
+	//Username to use for SMTP authentication
+	$mail->Username = 'bloomami2022@gmail.com';
+	//Password to use for SMTP authentication
+	$mail->Password = 'vbahrmbbdiafomvf';
+	//Set who the message is to be sent from
+	$mail->setFrom('bloomami2022@gmail.com');
+	//Set an alternative reply-to address
+	// $mail->addReplyTo('replyto@example.com', 'First Last');
+	//Set who the message is to be sent to
+	// $mail->addAddress('whoto@example.com', 'John Doe');
+	//Set the subject line
 	$send_email_array = explode(",", $send_email); //根据逗号分割存入数组
 	foreach ($send_email_array as $recipient) {
 		$recipient = trim($recipient); // 移除可能的空格
@@ -333,30 +337,89 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 		}
 	}
 
-	$mail->isHTML(true); // Set email format to HTML
-
-	$send_conpany = $rows['conpany']; //公司名稱
 	$mail->Subject = '網站線上申請';
-	$mail->Body = $message; //郵件內容
-	//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+	//Read an HTML message body from an external file, convert referenced images to embedded,
+	//convert HTML into a basic plain-text alternative body
+	// $mail->msgHTML(file_get_contents('contents.html'), __DIR__);
+	//Replace the plain text body with one created manually
+	// $mail->AltBody = 'This is a plain-text message body';
+	//Attach an image file
+	// $mail->addAttachment('images/phpmailer_mini.png');
 
-	var_dump($mail->send(), $mail, $PHP_Mailer_host, $PHP_Mailer_Username, $PHP_Mailer_Password, $PHP_Mailer_setFrom_mail, $PHP_Mailer_setFrom_name);
+	//SMTP XCLIENT attributes can be passed with setSMTPXclientAttribute method
+	//$mail->setSMTPXclientAttribute('LOGIN', 'yourname@example.com');
+	//$mail->setSMTPXclientAttribute('ADDR', '10.10.10.10');
+	//$mail->setSMTPXclientAttribute('HELO', 'test.example.com');
+
+	$mail->Body = $message;
+
+	var_dump($mail);
 	exit;
-
-
+	//send the message, check for errors
 	if (!$mail->send()) {
 		echo 'Mailer Error: ' . $mail->ErrorInfo;
-		echo "<Script Language =\"Javascript\">";
-		echo "alert('伺服器寄送失敗，或請直接來信或來電連繫，謝謝您!');";
-		echo "location='./';";
-		echo "</script>";
 	} else {
-		echo "<Script Language =\"Javascript\">";
-		echo "alert('已順利送出資訊，我們將會盡快與您做聯繫，謝謝您!');";
-		echo "location='./';";
-		echo "</script>";
+		echo 'Message sent!';
 	}
-	//mail發送
+
+
+	//echo !extension_loaded('openssl')?"Not Available":"Available";
+
+	// require_once("./PHP_Mailer/PHPMailerAutoload.php"); //記得引入檔案 
+	// require 'PHP_Mailer/class.phpmailer.php';
+	// require 'PHP_Mailer/class.smtp.php';
+	// $mail = new PHPMailer;
+	// $mail->CharSet = "utf-8"; //郵件編碼
+	// //寄信的程式頁面加入這一行
+
+	// //$mail->SMTPDebug = 3; // 開啟偵錯模式
+	// $mail->isSMTP(); // Set mailer to use SMTP
+	// $mail->Host = $PHP_Mailer_host; // Specify main and backup SMTP servers
+	// $mail->SMTPAuth = $PHP_Mailer_SMTPAuth; // Enable SMTP authentication
+	// //$mail->Username = '寄件者gmail'; // SMTP username
+	// $mail->Username = $PHP_Mailer_Username; // SMTP username
+	// //$mail->Password = "寄件者gmail密碼"; // SMTP password
+	// $mail->Password = $PHP_Mailer_Password; // SMTP password
+	// $mail->SMTPSecure = "ssl"; // Enable TLS encryption, `ssl` also accepted
+	// $mail->Port = "465"; // TCP port to connect to
+
+	// //$mail->setFrom('寄件者gmail', '名字'); //寄件的Gmail
+	// $mail->setFrom($PHP_Mailer_setFrom_mail, $PHP_Mailer_setFrom_name); //寄件的Gmail
+	// //$mail->addAddress('收件者信箱', '收件者名字'); // 收件的信箱
+
+	// //多收件者處理
+	// $send_email_array = explode(",", $send_email); //根据逗号分割存入数组
+	// foreach ($send_email_array as $recipient) {
+	// 	$recipient = trim($recipient); // 移除可能的空格
+	// 	if (filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
+	// 		$mail->addAddress($recipient);
+	// 	}
+	// }
+
+	// $mail->isHTML(true); // Set email format to HTML
+
+	// $send_conpany = $rows['conpany']; //公司名稱
+	// $mail->Subject = '網站線上申請';
+	// $mail->Body = $message; //郵件內容
+	// //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+	// var_dump($mail->send(), $mail, $PHP_Mailer_host, $PHP_Mailer_Username, $PHP_Mailer_Password, $PHP_Mailer_setFrom_mail, $PHP_Mailer_setFrom_name);
+	// exit;
+
+
+	// if (!$mail->send()) {
+	// 	echo 'Mailer Error: ' . $mail->ErrorInfo;
+	// 	echo "<Script Language =\"Javascript\">";
+	// 	echo "alert('伺服器寄送失敗，或請直接來信或來電連繫，謝謝您!');";
+	// 	echo "location='./';";
+	// 	echo "</script>";
+	// } else {
+	// 	echo "<Script Language =\"Javascript\">";
+	// 	echo "alert('已順利送出資訊，我們將會盡快與您做聯繫，謝謝您!');";
+	// 	echo "location='./';";
+	// 	echo "</script>";
+	// }
+	// //mail發送
 
 
 
