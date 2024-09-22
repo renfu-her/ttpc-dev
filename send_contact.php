@@ -313,7 +313,7 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	//SMTP::DEBUG_OFF = off (for production use)
 	//SMTP::DEBUG_CLIENT = client messages
 	//SMTP::DEBUG_SERVER = client and server messages
-	$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+	// $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 	//Set the hostname of the mail server
 	$mail->Host = 'smtp.gmaile.com';
 	//Set the SMTP port number - likely to be 25, 465 or 587
