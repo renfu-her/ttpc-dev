@@ -355,8 +355,6 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 
 	$mail->Body = $message;
 
-	var_dump($mail);
-	exit;
 	//send the message, check for errors
 	if (!$mail->send()) {
 		echo 'Mailer Error: ' . $mail->ErrorInfo;
@@ -409,18 +407,18 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	// exit;
 
 
-	// if (!$mail->send()) {
-	// 	echo 'Mailer Error: ' . $mail->ErrorInfo;
-	// 	echo "<Script Language =\"Javascript\">";
-	// 	echo "alert('伺服器寄送失敗，或請直接來信或來電連繫，謝謝您!');";
-	// 	echo "location='./';";
-	// 	echo "</script>";
-	// } else {
-	// 	echo "<Script Language =\"Javascript\">";
-	// 	echo "alert('已順利送出資訊，我們將會盡快與您做聯繫，謝謝您!');";
-	// 	echo "location='./';";
-	// 	echo "</script>";
-	// }
+	if (!$mail->send()) {
+		echo 'Mailer Error: ' . $mail->ErrorInfo;
+		echo "<Script Language =\"Javascript\">";
+		echo "alert('伺服器寄送失敗，或請直接來信或來電連繫，謝謝您!');";
+		echo "location='./';";
+		echo "</script>";
+	} else {
+		echo "<Script Language =\"Javascript\">";
+		echo "alert('已順利送出資訊，我們將會盡快與您做聯繫，謝謝您!');";
+		echo "location='./';";
+		echo "</script>";
+	}
 	// //mail發送
 
 
