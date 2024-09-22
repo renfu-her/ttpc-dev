@@ -315,7 +315,7 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	//SMTP::DEBUG_SERVER = client and server messages
 	// $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 	//Set the hostname of the mail server
-	$mail->Host = 'smtp.gmaile.com';
+	$mail->Host = 'smtp.gmail.com';
 	//Set the SMTP port number - likely to be 25, 465 or 587
 	$mail->Port = 465;
 	//Whether to use SMTP authentication
