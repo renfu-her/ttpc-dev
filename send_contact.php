@@ -315,8 +315,8 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	$mail->Username = $PHP_Mailer_Username; // SMTP username
 	//$mail->Password = "寄件者gmail密碼"; // SMTP password
 	$mail->Password = $PHP_Mailer_Password; // SMTP password
-	$mail->SMTPSecure = $PHP_Mailer_SMTPSecure; // Enable TLS encryption, `ssl` also accepted
-	$mail->Port = $PHP_Mailer_Port; // TCP port to connect to
+	$mail->SMTPSecure = "ssl"; // Enable TLS encryption, `ssl` also accepted
+	$mail->Port = "465"; // TCP port to connect to
 
 	//$mail->setFrom('寄件者gmail', '名字'); //寄件的Gmail
 	$mail->setFrom($PHP_Mailer_setFrom_mail, $PHP_Mailer_setFrom_name); //寄件的Gmail
@@ -333,16 +333,12 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 
 	$mail->isHTML(true); // Set email format to HTML
 
-
-	/*
-			內文
-		*/
 	$send_conpany = $rows['conpany']; //公司名稱
 	$mail->Subject = '網站線上申請';
 	$mail->Body = $message; //郵件內容
 	//$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-	var_dump($mail->send(), $mail);
+	var_dump($mail->send(), $mail, $PHP_Mailer_host, $PHP_Mailer_Username, $PHP_Mailer_Password, $PHP_Mailer_setFrom_mail, $PHP_Mailer_setFrom_name);
 	exit;
 
 
