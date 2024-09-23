@@ -3,9 +3,9 @@ if (!isset($_SESSION)) {
 	session_start();
 }
 
-require 'PHPMailer6/src/Exception.php';
-require 'PHPMailer6/src/PHPMailer.php';
-require 'PHPMailer6/src/SMTP.php';
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 // 使用命名空间中的类
 use PHPMailer\PHPMailer\PHPMailer;
