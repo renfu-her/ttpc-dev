@@ -309,6 +309,7 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 
 	$mail = new PHPMailer();
 	$mail->CharSet = "utf-8"; //郵件編碼
+	$mail->isHTML(true);
 	$mail->isSMTP();
 	$mail->Host = 'smtp.gmail.com';
 	$mail->Port = 465;
@@ -334,7 +335,7 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	$mail->Subject = '網站線上申請';
 	$mail->Body = $message;
 
-	var_dump($mail);
+	var_dump($mail->send());
 	exit;
 
 	//send the message, check for errors
