@@ -308,16 +308,45 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	require 'PHP_Mailer/class.smtp.php';
 
 	$mail = new PHPMailer();
-	$mail->CharSet = "utf-8"; //郵件編碼
+	$mail->CharSet = "utf-8";
 	$mail->isHTML(true);
-	$mail->isSMTP();
-	$mail->Host = 'smtp.gmail.com';
-	$mail->Port = 587;
-	$mail->SMTPAuth = true;
-	$mail->SMTPSecure = 'tls';
-	$mail->Username = 'bloomami2022@gmail.com';
-	$mail->Password = 'vbahrmbbdiafomvf';
-	$mail->setFrom('bloomami2022@gmail.com');
+    $mail->SMTPDebug = 2; // 启用调试模式
+    $mail->isSMTP(); // 使用SMTP
+    $mail->Host       = 'smtp.gmail.com'; // SMTP服务器地址
+    $mail->SMTPAuth   = true; // 启用SMTP认证
+    $mail->Username   = 'bloomami2022@gmail.com'; // SMTP用户名
+    $mail->Password   = 'vbahrmbbdiafomvf'; // SMTP密码
+    $mail->SMTPSecure = 'tls'; // 加密方式（'ssl'、'tls' 或留空）
+    $mail->Port       = 587; // SMTP端口
+    $mail->Timeout    = 30; // 超时时间（秒）
+
+    // 收件人设置
+    $mail->setFrom('bloomami2022@gmail.com', 'TTPC'); // 发件人
+    $mail->addAddress('renfu.her@gmail.com', 'Renfu'); // 收件人
+    // $mail->addReplyTo('info@example.com', 'Information'); // 回复地址（可选）
+    // $mail->addCC('cc@example.com'); // 抄送（可选）
+    // $mail->addBCC('bcc@example.com'); // 密送（可选）
+
+    // 内容设置
+    $mail->isHTML(true); // 设置邮件格式为HTML
+    $mail->Subject = '網站線上申請';
+    $mail->Body    = $message;
+    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+    var_dump($mail->send());
+    exit;
+
+
+	// $mail->CharSet = "utf-8"; //郵件編碼
+	// $mail->isHTML(true);
+	// $mail->isSMTP();
+	// $mail->Host = 'smtp.gmail.com';
+	// $mail->Port = 587;
+	// $mail->SMTPAuth = true;
+	// $mail->SMTPSecure = 'tls';
+	// $mail->Username = 'bloomami2022@gmail.com';
+	// $mail->Password = 'vbahrmbbdiafomvf';
+	// $mail->setFrom('bloomami2022@gmail.com');
 	//Set an alternative reply-to address
 	// $mail->addReplyTo('replyto@example.com', 'First Last');
 	//Set who the message is to be sent to
