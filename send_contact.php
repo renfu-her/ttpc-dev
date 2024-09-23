@@ -308,23 +308,14 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	require 'PHP_Mailer/class.smtp.php';
 
 	$mail = new PHPMailer();
-
-	var_dump($mail);
-	exit;
-	
+	$mail->CharSet = "utf-8"; //郵件編碼
 	$mail->isSMTP();
-	
 	$mail->Host = 'smtp.gmail.com';
-	
 	$mail->Port = 465;
-	
 	$mail->SMTPAuth = true;
 	$mail->SMTPSecure = 'ssl';
-	
 	$mail->Username = 'bloomami2022@gmail.com';
-	
 	$mail->Password = 'vbahrmbbdiafomvf';
-
 	$mail->setFrom('bloomami2022@gmail.com');
 	//Set an alternative reply-to address
 	// $mail->addReplyTo('replyto@example.com', 'First Last');
@@ -340,12 +331,10 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	// }
 
 	$mail->addAddress('renfu.her@gmail.com');
-
 	$mail->Subject = '網站線上申請';
-
 	$mail->Body = $message;
 
-	var_dump($mail, $mail->send());
+	var_dump($mail);
 	exit;
 
 	//send the message, check for errors
