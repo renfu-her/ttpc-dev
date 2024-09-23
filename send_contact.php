@@ -3,14 +3,7 @@ if (!isset($_SESSION)) {
 	session_start();
 }
 
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
 
-// 使用命名空间中的类
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\SMTP;
 
 echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />';
 include "admin/common.func.php";
@@ -310,6 +303,9 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	//mail發送
 	//設定time out
 	set_time_limit(120);
+
+	require 'PHP_Mailer/class.phpmailer.php';
+	require 'PHP_Mailer/class.smtp.php';
 
 	//Create a new PHPMailer instance
 	$mail = new PHPMailer();
