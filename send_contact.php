@@ -310,7 +310,7 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	$mail = new PHPMailer();
 
 	var_dump($mail);
-	exit；
+	exit;
 	
 	$mail->isSMTP();
 	
