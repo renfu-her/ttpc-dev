@@ -323,9 +323,10 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	//Set the hostname of the mail server
 	$mail->Host = 'smtp.gmail.com';
 	//Set the SMTP port number - likely to be 25, 465 or 587
-	$mail->Port = 587;
+	$mail->Port = 465;
 	//Whether to use SMTP authentication
 	$mail->SMTPAuth = true;
+	$mail->SMTPSecure = 'ssl';
 	//Username to use for SMTP authentication
 	$mail->Username = 'bloomami2022@gmail.com';
 	//Password to use for SMTP authentication
