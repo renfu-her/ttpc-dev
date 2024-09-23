@@ -312,9 +312,9 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	$mail->isHTML(true);
 	$mail->isSMTP();
 	$mail->Host = 'smtp.gmail.com';
-	$mail->Port = 465;
+	$mail->Port = 587;
 	$mail->SMTPAuth = true;
-	$mail->SMTPSecure = 'ssl';
+	$mail->SMTPSecure = 'tls';
 	$mail->Username = 'bloomami2022@gmail.com';
 	$mail->Password = 'vbahrmbbdiafomvf';
 	$mail->setFrom('bloomami2022@gmail.com');
