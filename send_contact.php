@@ -316,7 +316,9 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	$postData = [
 		'emails' => $emails,
 		'message' => $message,
-		'subject' => '網站線上申請'
+		'subject' => '網站線上申請',
+		'mail_username' => 'bloomami2022@gmail.com',
+		'mail_password' => 'vbahrmbbdiafomvf',
 	];
 
 	$ch = curl_init('https://message-sent.dev-vue.com/api/send-mail');
