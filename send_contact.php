@@ -307,27 +307,24 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	require 'PHP_Mailer/class.phpmailer.php';
 	require 'PHP_Mailer/class.smtp.php';
 
-	//Create a new PHPMailer instance
 	$mail = new PHPMailer();
-	//Tell PHPMailer to use SMTP
+
+	var_dump($mail);
+	exit；
+	
 	$mail->isSMTP();
-	//Enable SMTP debugging
-	//SMTP::DEBUG_OFF = off (for production use)
-	//SMTP::DEBUG_CLIENT = client messages
-	//SMTP::DEBUG_SERVER = client and server messages
-	// $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-	//Set the hostname of the mail server
+	
 	$mail->Host = 'smtp.gmail.com';
-	//Set the SMTP port number - likely to be 25, 465 or 587
+	
 	$mail->Port = 465;
-	//Whether to use SMTP authentication
+	
 	$mail->SMTPAuth = true;
 	$mail->SMTPSecure = 'ssl';
-	//Username to use for SMTP authentication
+	
 	$mail->Username = 'bloomami2022@gmail.com';
-	//Password to use for SMTP authentication
+	
 	$mail->Password = 'vbahrmbbdiafomvf';
-	//Set who the message is to be sent from
+
 	$mail->setFrom('bloomami2022@gmail.com');
 	//Set an alternative reply-to address
 	// $mail->addReplyTo('replyto@example.com', 'First Last');
@@ -345,18 +342,6 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	$mail->addAddress('renfu.her@gmail.com');
 
 	$mail->Subject = '網站線上申請';
-	//Read an HTML message body from an external file, convert referenced images to embedded,
-	//convert HTML into a basic plain-text alternative body
-	// $mail->msgHTML(file_get_contents('contents.html'), __DIR__);
-	//Replace the plain text body with one created manually
-	// $mail->AltBody = 'This is a plain-text message body';
-	//Attach an image file
-	// $mail->addAttachment('images/phpmailer_mini.png');
-
-	//SMTP XCLIENT attributes can be passed with setSMTPXclientAttribute method
-	//$mail->setSMTPXclientAttribute('LOGIN', 'yourname@example.com');
-	//$mail->setSMTPXclientAttribute('ADDR', '10.10.10.10');
-	//$mail->setSMTPXclientAttribute('HELO', 'test.example.com');
 
 	$mail->Body = $message;
 
@@ -379,7 +364,6 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	// $mail = new PHPMailer;
 	// $mail->CharSet = "utf-8"; //郵件編碼
 	// //寄信的程式頁面加入這一行
-
 	// //$mail->SMTPDebug = 3; // 開啟偵錯模式
 	// $mail->isSMTP(); // Set mailer to use SMTP
 	// $mail->Host = $PHP_Mailer_host; // Specify main and backup SMTP servers
