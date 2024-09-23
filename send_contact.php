@@ -299,42 +299,78 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 </table>
 ";
 
+
+	set_time_limit(120);
+
+	$send_email_array = explode(",", $send_email); //根据逗号分割存入数组
+	foreach ($send_email_array as $recipient) {
+		$recipient = trim($recipient); // 移除可能的空格
+		if (filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
+			// $mail->addAddress($recipient);
+			$emails[] = $recipient;
+		}
+	}
+
+	$postData = [
+		'emails' => $emails,
+		'message' => $message,
+		'subject' => '網站線上申請'
+	];
+
+	$ch = curl_init('https://message-sent.dev-vue.com/api/send-mail');
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+
+	$response = curl_exec($ch);
+	curl_close($ch);
+
+	if ($response === false) {
+		echo "<Script Language =\"Javascript\">";
+		echo "alert('伺服器寄送失敗，或請直接來信或來電連繫，謝謝您!');";
+		echo "location='./';";
+		echo "</script>";
+	} else {
+		echo "<Script Language =\"Javascript\">";
+		echo "alert('已順利送出資訊，我們將會盡快與您做聯繫，謝謝您!');";
+		echo "location='./';";
+		echo "</script>";
+	}
+
 	//mail發送
 	//mail發送
 	//設定time out
-	set_time_limit(120);
 
-	require 'PHP_Mailer/class.phpmailer.php';
-	require 'PHP_Mailer/class.smtp.php';
+	// require 'PHP_Mailer/class.phpmailer.php';
+	// require 'PHP_Mailer/class.smtp.php';
 
-	$mail = new PHPMailer();
-	$mail->CharSet = "utf-8";
-	$mail->isHTML(true);
-    $mail->SMTPDebug = 2; // 启用调试模式
-    $mail->isSMTP(); // 使用SMTP
-    $mail->Host       = 'smtp.gmail.com'; // SMTP服务器地址
-    $mail->SMTPAuth   = true; // 启用SMTP认证
-    $mail->Username   = 'bloomami2022@gmail.com'; // SMTP用户名
-    $mail->Password   = 'vbahrmbbdiafomvf'; // SMTP密码
-    $mail->SMTPSecure = 'tls'; // 加密方式（'ssl'、'tls' 或留空）
-    $mail->Port       = 587; // SMTP端口
-    $mail->Timeout    = 30; // 超时时间（秒）
+	// $mail = new PHPMailer();
+	// $mail->CharSet = "utf-8";
+	// $mail->isHTML(true);
+	// $mail->SMTPDebug = 2; // 启用调试模式
+	// $mail->isSMTP(); // 使用SMTP
+	// $mail->Host       = 'smtp.gmail.com'; // SMTP服务器地址
+	// $mail->SMTPAuth   = true; // 启用SMTP认证
+	// $mail->Username   = 'bloomami2022@gmail.com'; // SMTP用户名
+	// $mail->Password   = 'vbahrmbbdiafomvf'; // SMTP密码
+	// $mail->SMTPSecure = 'tls'; // 加密方式（'ssl'、'tls' 或留空）
+	// $mail->Port       = 587; // SMTP端口
+	// $mail->Timeout    = 30; // 超时时间（秒）
 
-    // 收件人设置
-    $mail->setFrom('bloomami2022@gmail.com', 'TTPC'); // 发件人
-    $mail->addAddress('renfu.her@gmail.com', 'Renfu'); // 收件人
-    // $mail->addReplyTo('info@example.com', 'Information'); // 回复地址（可选）
-    // $mail->addCC('cc@example.com'); // 抄送（可选）
-    // $mail->addBCC('bcc@example.com'); // 密送（可选）
+	// // 收件人设置
+	// $mail->setFrom('bloomami2022@gmail.com', 'TTPC'); // 发件人
+	// $mail->addAddress('renfu.her@gmail.com', 'Renfu'); // 收件人
+	// $mail->addReplyTo('info@example.com', 'Information'); // 回复地址（可选）
+	// $mail->addCC('cc@example.com'); // 抄送（可选）
+	// $mail->addBCC('bcc@example.com'); // 密送（可选）
 
-    // 内容设置
-    $mail->isHTML(true); // 设置邮件格式为HTML
-    $mail->Subject = '網站線上申請';
-    $mail->Body    = $message;
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+	// 内容设置
+	// $mail->isHTML(true); // 设置邮件格式为HTML
+	// $mail->Subject = '網站線上申請';
+	// $mail->Body    = $message;
+	// $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-    var_dump($mail->send());
-    exit;
+	// var_dump($mail->send());
+	// exit;
 
 
 	// $mail->CharSet = "utf-8"; //郵件編碼
@@ -360,19 +396,19 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 	// 	}
 	// }
 
-	$mail->addAddress('renfu.her@gmail.com');
-	$mail->Subject = '網站線上申請';
-	$mail->Body = $message;
+	// $mail->addAddress('renfu.her@gmail.com');
+	// $mail->Subject = '網站線上申請';
+	// $mail->Body = $message;
 
-	var_dump($mail->send());
-	exit;
+	// var_dump($mail->send());
+	// exit;
 
-	//send the message, check for errors
-	if (!$mail->send()) {
-		echo 'Mailer Error: ' . $mail->ErrorInfo;
-	} else {
-		echo 'Message sent!';
-	}
+	// //send the message, check for errors
+	// if (!$mail->send()) {
+	// 	echo 'Mailer Error: ' . $mail->ErrorInfo;
+	// } else {
+	// 	echo 'Message sent!';
+	// }
 
 
 	//echo !extension_loaded('openssl')?"Not Available":"Available";
