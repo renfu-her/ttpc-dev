@@ -311,8 +311,6 @@ if ($responseKeys["success"]) { // success//google我不是機器人
 		}
 	}
 
-	$emails[] = 'renfu.her@gmail.com';
-
 	$postData = [
 		'from_email' => 'bloomami2022@gmail.com',
 		'from_name' => 'TTPC 警民聯防',
